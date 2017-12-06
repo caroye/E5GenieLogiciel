@@ -18,3 +18,23 @@
     background-color: #4CAF50;
     color: white;
 }
+
+#vertical-menu a.submenu{
+    background-color: #8bd388;
+    color: white;
+    font-size: 11px;
+}
+
+#vertical-menu a.submenuAct{
+    background-color: #9cf5b1;
+    color: white;
+    font-size: 11px;
+}
+
+#vertical-menu a.submenu:hover {
+    background-color: #ccc;
+}
+
+#vertical-menu a.submenuAct:hover {
+    background-color: #ccc;
+}
