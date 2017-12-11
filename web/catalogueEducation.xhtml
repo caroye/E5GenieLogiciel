@@ -15,7 +15,7 @@
     <h:body>
         <!-- TOP __________________________________________________________________-->
         <div id="top">            
-             <h:form>
+            <h:form>
                 <h:graphicImage value="/resources/image/plaisirdelire.png" />
                 <h:inputText value="search"/>
                 <h:graphicImage value="/resources/image/search.png" width="1%" style="float: center;"/>
@@ -28,32 +28,25 @@
         
         <!-- LEFT __________________________________________________________________-->
         <div>
-            <div id="left">
+             <div id="left">
                 <div id="vertical-menu">
                     <a href="templateTest.xhtml">Présentation</a>
-                    <a href="catalogue.xhtml">Catalogue</a>
+                    <a href="catalogue.xhtml" class="active">Catalogue</a>
+                    <a href="cataloguePoesie.xhtml" class="submenu">Poésie</a>
+                    <a href="catalogueRoman.xhtml" class="submenu">Roman</a>
+                    <a href="catalogueEducation" class="submenuAct">Education</a>
+                    <a href="catalogueCulture" class="submenu">Culture</a>
                     <a href="nouveaute.xhtml">Nouveauté</a>
-                    <a href="rechercher.xhtml">Recherche</a>
+                    <a href="recherhcer.xhtml">Recherche</a>
                     <a href="abonner.xhtml">S'abonner</a>
-                </div>
-              
+                </div>              
             </div>
-            
+        </div>  
         <!-- CONTENT __________________________________________________________________-->    
-            <div id="content" class="left_content">
-                <h:form>
-                    <h:panelGrid columns="2">
-                        <h:outputLabel>ID : </h:outputLabel>
-                        <h:inputText value=""></h:inputText>
-                        <h:outputLabel>Mot de passe : </h:outputLabel>
-                        <h:inputSecret value=""></h:inputSecret>
-                    </h:panelGrid>
-                    <h:commandButton value="Se connecter" action="#"/>
-                </h:form>
-                
-               
-            </div>
+        <div id="content" class="left_content">
+                               
         </div>
+        
         
         <!-- BOTTOM __________________________________________________________________-->
         <div id="bottom" class="absolute">

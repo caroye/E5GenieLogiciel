@@ -15,7 +15,7 @@
     <h:body>
         <!-- TOP __________________________________________________________________-->
         <div id="top">            
-             <h:form>
+            <h:form>
                 <h:graphicImage value="/resources/image/plaisirdelire.png" />
                 <h:inputText value="search"/>
                 <h:graphicImage value="/resources/image/search.png" width="1%" style="float: center;"/>
@@ -32,54 +32,58 @@
                 <div id="vertical-menu">
                     <a href="templateTest.xhtml">Présentation</a>
                     <a href="catalogue.xhtml">Catalogue</a>
-                    <a href="nouveaute.xhtml">Nouveauté</a>
+                    <a href="nouveaute.xhtml" class="active">Nouveauté</a>
                     <a href="rechercher.xhtml">Recherche</a>
                     <a href="abonner.xhtml">S'abonner</a>
                 </div>
               
             </div>
+              
+        </div>
             
         <!-- CONTENT __________________________________________________________________-->    
             <div id="content" class="left_content">
-                <h:form>
-                    <h:panelGrid columns="2">
-                        <h:outputLabel>Nom* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
-                        
-                        <h:outputLabel>Prénom* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
-                        
-                        <h:outputLabel>Téléphone* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
-                        
-                        <h:outputLabel>Adresse mail* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
-                        
-                        <h:outputLabel>Adresse* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
-                        
-                        <h:outputLabel>Code Postal* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
-                        
-                        <h:outputLabel>Ville* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
-                        
-                        <h:outputLabel>Société : </h:outputLabel>
-                        <h:inputText value="" required="false"></h:inputText>
-                        
-                        <h:outputLabel>Mot de passe* : </h:outputLabel>
-                        <h:inputSecret value="" required="true"></h:inputSecret>
-                        
-                        <h:outputLabel>Confirmation du mot de passe* : </h:outputLabel>
-                        <h:inputSecret value="" required="true"></h:inputSecret>
-                        
-                    </h:panelGrid>
-                    <h:commandButton value="S'inscrire" action="#"/>
-                </h:form>
                 
-               
+                <h:panelGrid columns="2" cellpadding="10" width="100%">
+                    <h:panelGroup>
+                        <h1 align="center">News 1</h1><br/>
+                        <p align="center">
+                        </p>
+                        <p align="center">
+                            <h:graphicImage value="" />
+                        </p>                        
+                    </h:panelGroup>
+                    
+                    <h:panelGroup>
+                        <h1 align="center">News 2</h1><br/>
+                        <p align="center">
+                        </p>
+                        <p align="center">
+                            <h:graphicImage value="" />
+                        </p>
+                    </h:panelGroup>
+                    
+                    <h:panelGroup>
+                        <h1 align="center">News 3</h1><br/>
+                        <p align="center">
+                            
+                        </p>
+                        <p align="center">
+                            <h:graphicImage value="" />
+                        </p>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <h1 align="center">News 4</h1><br/>
+                        <p align="center">
+                        </p>
+                        <p align="center">
+                            <h:graphicImage value="" />
+                        </p>
+                    </h:panelGroup>
+                    
+                </h:panelGrid>
             </div>
-        </div>
+        
         
         <!-- BOTTOM __________________________________________________________________-->
         <div id="bottom" class="absolute">
