@@ -18,7 +18,7 @@
         <!-- TOP __________________________________________________________________-->
         <div id="top">            
              <h:form>
-               <h:graphicImage value="/resources/image/plaisirdelire.png" />
+                <<h:graphicImage value="/resources/image/plaisirdelire.png" />
                 <h:inputText value="search"/>
                 <h:button image="/resources/image/search.png" style="width: 20px"/>
                 <h:button value="Sign up"  style="float: right;" outcome="inscription"/>
@@ -33,11 +33,7 @@
             <div id="left">
                 <div id="vertical-menu">
                     <a href="templateTest.xhtml">Présentation</a>
-                    <a href="catalogue.xhtml" class="active">Catalogue</a>
-                    <a href="cataloguePoesie.xhtml" class="submenuAct">Poésie</a>
-                    <a href="catalogueRoman.xhtml" class="submenu">Roman</a>
-                    <a href="catalogueEducation.xhtml" class="submenu">Education</a>
-                    <a href="catalogueCulture.xhtml" class="submenu">Culture</a>
+                    <a href="catalogue.xhtml">Catalogue</a>
                     <a href="nouveaute.xhtml">Nouveauté</a>
                     <a href="recherhcer.xhtml">Recherche</a>
                     <a href="profil.xhtml">S'abonner</a>
@@ -48,7 +44,7 @@
         <!-- CONTENT __________________________________________________________________-->    
             <div id="content" class="left_content">
                 <h:panelGrid columns="1" cellpadding="10" width="100%">
-                    <h1 align="center">Poésie</h1><br/>
+                    <h1 align="center">Panier</h1><br/>
                 </h:panelGrid>
                <!-- Noms des colonnes -->
                <h:panelGrid columns="6" cellpadding="10"  columnClasses="col1, col2, col3, col4, col5, col6">
@@ -68,7 +64,7 @@
                         <h1 align="center">Quantité</h1><br/>
                     </h:panelGroup>
                      <h:panelGroup>
-                        <h1 align="center">Ajout</h1><br/>
+                        <h1 align="center">Prix</h1><br/>
                     </h:panelGroup>                   
                 </h:panelGrid>
                 
@@ -97,41 +93,16 @@
                         
                     </h:panelGroup>
                      <h:panelGroup>
-                         <!-- Bouton Ajouter-->
-                         <h:button value="Ajouter au panier" onclick="#"></h:button>
+                         <!-- Prix -->
+                         
                     </h:panelGroup>                   
                 </h:panelGrid>
-                <h:panelGrid columns="6" cellpadding="10" columnClasses="col1, col2, col3, col4, col5bis, col6bis">
-                    <h:panelGroup>
-                        <!-- Titre-->
-                        <p>Titre</p><br/>                       
-                    </h:panelGroup>                   
-                    <h:panelGroup>
-                        <!-- Auteur-->
-                        <p>Mon auteur</p><br/>
-                    </h:panelGroup>                   
-                    <h:panelGroup>
-                        <!-- Date-->
-                        <p>Ma date</p><br/>
-                    </h:panelGroup>
-                     <h:panelGroup>
-                         <!-- Résumé-->
-                        <p>Mon résumé</p><br/>
-                    </h:panelGroup>
-                     <h:panelGroup>
-                         <!-- Quantité-->
-                         <h:form>
-                             <h:inputText id="NbLivre" value="1" size="2"></h:inputText>
-                         </h:form>
-                        
-                    </h:panelGroup>
-                     <h:panelGroup>
-                         <!-- Bouton Ajouter-->
-                         <h:button value="Ajouter au panier" onclick="#"></h:button>
-                    </h:panelGroup>                   
-                </h:panelGrid>
+                
             </div>
         </div>
+        <h:form>
+            <h:commandButton value="commander" />
+        </h:form>
         
         <!-- BOTTOM __________________________________________________________________-->
         <div id="bottom"  class="absolute">
