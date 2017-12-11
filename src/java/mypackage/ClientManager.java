@@ -38,4 +38,7 @@ public class ClientManager {
     public void removeClient(){
         
     }
+    public void updateClient(){
+        
+    }
 }
