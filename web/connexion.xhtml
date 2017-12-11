@@ -14,8 +14,8 @@
 
     <h:body>
         <!-- TOP __________________________________________________________________-->
-        <div id="top"> 
-            <h:form>
+        <div id="top">            
+             <h:form>
                 <h:graphicImage value="/resources/image/plaisirdelire.png" />
                 <h:inputText value="search"/>
                 <h:graphicImage value="/resources/image/search.png" width="1%" style="float: center;"/>
@@ -24,14 +24,13 @@
                 <h:graphicImage value ="/resources/image/shopping-cart.png" style="float: right;"/>
             </h:form>
             
-            
         </div>
         
         <!-- LEFT __________________________________________________________________-->
         <div>
             <div id="left">
                 <div id="vertical-menu">
-                    <a href="templateTest.xhtml" class="active">Présentation</a>
+                    <a href="templateTest.xhtml">Présentation</a>
                     <a href="catalogue.xhtml">Catalogue</a>
                     <a href="nouveaute.xhtml">Nouveauté</a>
                     <a href="rechercher.xhtml">Recherche</a>
@@ -42,44 +41,22 @@
             
         <!-- CONTENT __________________________________________________________________-->    
             <div id="content" class="left_content">
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel>ID : </h:outputLabel>
+                        <h:inputText value=""></h:inputText>
+                        <h:outputLabel>Mot de passe : </h:outputLabel>
+                        <h:inputSecret value=""></h:inputSecret>
+                    </h:panelGrid>
+                    <h:commandButton value="Se connecter" action="#"/>
+                </h:form>
                 
-                <h:panelGrid columns="3" cellpadding="10" width="100% -150px">
-                    <h:panelGroup>
-                        <h1 align="center">Article 1</h1><br/>
-                        <p align="center">
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                        </p>
-                    </h:panelGroup>
-                    
-                    <h:panelGroup>
-                        <h1 align="center">Article 2</h1><br/>
-                        <p align="center">
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                        </p>
-                    </h:panelGroup>
-                    
-                    <h:panelGroup>
-                        <h1 align="center">Article 3</h1><br/>
-                        <p align="center">
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                        </p>
-                    </h:panelGroup>
-                    
-                </h:panelGrid>
+               
             </div>
         </div>
         
         <!-- BOTTOM __________________________________________________________________-->
-        <div id="bottom"  class="absolute">
+        <div id="bottom" class="absolute">
             <p align="center">&copy; Plaisir de lire</p>
         </div>
 
