@@ -14,7 +14,7 @@
 
     <h:body>
         <!-- TOP __________________________________________________________________-->
-        <div id="top"> 
+        <div id="top">            
             <h:form>
                 <h:graphicImage value="/resources/image/plaisirdelire.png" />
                 <h:inputText value="search"/>
@@ -24,62 +24,69 @@
                 <h:graphicImage value ="/resources/image/shopping-cart.png" style="float: right;"/>
             </h:form>
             
-            
         </div>
         
         <!-- LEFT __________________________________________________________________-->
         <div>
             <div id="left">
                 <div id="vertical-menu">
-                    <a href="templateTest.xhtml" class="active">Présentation</a>
+                    <a href="templateTest.xhtml">Présentation</a>
                     <a href="catalogue.xhtml">Catalogue</a>
-                    <a href="nouveaute.xhtml">Nouveauté</a>
+                    <a href="nouveaute.xhtml" class="active">Nouveauté</a>
                     <a href="rechercher.xhtml">Recherche</a>
                     <a href="abonner.xhtml">S'abonner</a>
                 </div>
               
             </div>
+              
+        </div>
             
         <!-- CONTENT __________________________________________________________________-->    
             <div id="content" class="left_content">
                 
-                <h:panelGrid columns="3" cellpadding="10" width="100% -150px">
+                <h:panelGrid columns="2" cellpadding="10" width="100%">
                     <h:panelGroup>
-                        <h1 align="center">Article 1</h1><br/>
+                        <h1 align="center">News 1</h1><br/>
                         <p align="center">
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
+                        </p>
+                        <p align="center">
+                            <h:graphicImage value="" />
+                        </p>                        
+                    </h:panelGroup>
+                    
+                    <h:panelGroup>
+                        <h1 align="center">News 2</h1><br/>
+                        <p align="center">
+                        </p>
+                        <p align="center">
+                            <h:graphicImage value="" />
                         </p>
                     </h:panelGroup>
                     
                     <h:panelGroup>
-                        <h1 align="center">Article 2</h1><br/>
+                        <h1 align="center">News 3</h1><br/>
                         <p align="center">
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
+                            
+                        </p>
+                        <p align="center">
+                            <h:graphicImage value="" />
                         </p>
                     </h:panelGroup>
-                    
                     <h:panelGroup>
-                        <h1 align="center">Article 3</h1><br/>
+                        <h1 align="center">News 4</h1><br/>
                         <p align="center">
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
+                        </p>
+                        <p align="center">
+                            <h:graphicImage value="" />
                         </p>
                     </h:panelGroup>
                     
                 </h:panelGrid>
             </div>
-        </div>
+        
         
         <!-- BOTTOM __________________________________________________________________-->
-        <div id="bottom"  class="absolute">
+        <div id="bottom" class="absolute">
             <p align="center">&copy; Plaisir de lire</p>
         </div>
 
