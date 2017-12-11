@@ -96,7 +96,35 @@ public class Client {
         return societe;
     }
     
-    
-    
+    public void setId(int id){
+        this.id = id;
+    }
+    public void setNom(String nom){
+        this.nom = nom;
+    }
+    public void setPrenom(String prenom){
+        this.prenom = prenom;
+    }
+    public void setMdp(String Mdp){
+        this.mdp = Mdp;
+    }
+    public void setMail(String mail){
+        this.mail = mail;
+    }
+    public void setTelephone(int tel){
+        this.telephone = tel;
+    }
+    public void setAdresse(String adresse){
+        this.adresse = adresse;
+    }
+    public void setCodePostal(int code){
+        this.codePostal = code;
+    }
+    public void setVille(String ville){
+        this.ville = ville;
+    }
+    public void setSociete(String societe){
+        this.societe = societe;
+    }
     
 }

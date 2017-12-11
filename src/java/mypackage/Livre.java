@@ -24,12 +24,16 @@ public class Livre {
     private String titre;
     private String resume;
     private String date;    
+    private String genre;
+    private String auteur;
 
-    public Livre(int id, String titre, String resume, String date) {
+    public Livre(int id, String titre, String resume, String date, String genre, String auteur) {
         this.id = id;
         this.titre = titre;
         this.resume = resume;
         this.date = date;
+        this.genre = genre;
+        this.auteur = auteur;
     }
 
     public int getId() {
@@ -47,6 +51,12 @@ public class Livre {
     public String getDate() {
         return date;
     }
+    public String getGenre(){
+        return genre;
+    }
+    public String getAuteur(){
+        return auteur;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -62,6 +72,12 @@ public class Livre {
 
     public void setDate(String date) {
         this.date = date;
+    }
+    public void setGenre(String genre){
+        this.genre = genre;
+    }
+    public void setAuteur(String auteur){
+        this.auteur = auteur;
     }
     
     
