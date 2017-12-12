@@ -44,37 +44,37 @@
                 <h:form>
                     <h:panelGrid columns="2">
                         <h:outputLabel>Nom* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
+                        <h:inputText value="#{client.nom}" required="true"></h:inputText>
                         
                         <h:outputLabel>Prénom* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
+                        <h:inputText value="#{client.prenom}" required="true"></h:inputText>
                         
                         <h:outputLabel>Téléphone* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
+                        <h:inputText value="#{client.telephone}" required="true"></h:inputText>
                         
                         <h:outputLabel>Adresse mail* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
+                        <h:inputText value="#{client.mail}" required="true"></h:inputText>
                         
                         <h:outputLabel>Adresse* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
+                        <h:inputText value="#{client.adresse}" required="true"></h:inputText>
                         
                         <h:outputLabel>Code Postal* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
+                        <h:inputText value="#{client.codePostal}" required="true"></h:inputText>
                         
                         <h:outputLabel>Ville* : </h:outputLabel>
-                        <h:inputText value="" required="true"></h:inputText>
+                        <h:inputText value="#{client.ville}" required="true"></h:inputText>
                         
                         <h:outputLabel>Société : </h:outputLabel>
-                        <h:inputText value="" required="false"></h:inputText>
+                        <h:inputText value="#{client.societe}" required="false"></h:inputText>
                         
                         <h:outputLabel>Mot de passe* : </h:outputLabel>
-                        <h:inputSecret value="" required="true"></h:inputSecret>
+                        <h:inputSecret value="#{client.mdp}" required="true"></h:inputSecret>
                         
                         <h:outputLabel>Confirmation du mot de passe* : </h:outputLabel>
-                        <h:inputSecret value="" required="true"></h:inputSecret>
+                        <h:inputSecret value="#{client.mdp2}" required="true"></h:inputSecret>
                         
                     </h:panelGrid>
-                    <h:commandButton value="S'inscrire" action="#"/>
+                    <h:commandButton value="S'inscrire" action="#{client.checkPassWord()}"/>
                 </h:form>
                 
                

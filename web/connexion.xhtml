@@ -43,12 +43,12 @@
             <div id="content" class="left_content">
                 <h:form>
                     <h:panelGrid columns="2">
-                        <h:outputLabel>ID : </h:outputLabel>
-                        <h:inputText value=""></h:inputText>
+                        <h:outputLabel>Mail : </h:outputLabel>
+                        <h:inputText value="#{client.mail}"></h:inputText>
                         <h:outputLabel>Mot de passe : </h:outputLabel>
-                        <h:inputSecret value=""></h:inputSecret>
+                        <h:inputSecret value="#{client.mdp}"></h:inputSecret>
                     </h:panelGrid>
-                    <h:commandButton value="Se connecter" action="#"/>
+                    <h:commandButton value="Se connecter" action="#{client.connect()}"/>
                 </h:form>
                 
                

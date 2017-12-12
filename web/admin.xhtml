@@ -141,8 +141,8 @@
                 <br/>
                 <h:form>
                     <h:outputText value="Supprimer un utilisateur grâce à son adresse mail :" /><br/>
-                    <h:inputText value=""/>
-                    <h:commandButton value="Supprimer" />
+                    <h:inputText value="" />
+                    <h:commandButton value="Supprimer" action="#{clientManager.removeClient(mail)}"/>
                 </h:form>
                 
             </div>

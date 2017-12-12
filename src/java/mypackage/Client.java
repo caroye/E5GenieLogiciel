@@ -5,8 +5,12 @@
  */
 package mypackage;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.servlet.UnavailableException;
 
 /**
  *
@@ -23,12 +27,18 @@ public class Client {
     private String nom;
     private String prenom;
     private String mdp;
+    private String mdp2;
     private String mail;
     private int telephone;
     private String adresse;
     private int codePostal;
     private String ville;
     private String societe;
+
+    public Client() {
+    }
+    
+    
 
     public Client(int id, String nom, String prenom, String mdp, String mail, int telephone, String adresse, int codePostal, String ville) {
         this.id = id;
@@ -54,6 +64,52 @@ public class Client {
         this.codePostal = codePostal;
         this.ville = ville;
         this.societe = societe;
+    }
+    
+    public void connect() throws SQLException{
+        try {
+            Client client = ClientManager.getClient(this.mail, this.mdp);
+        } catch (UnavailableException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public String checkPassWord() throws SQLException{
+        if(this.getMdp().equals(this.getMdp2())){
+            Client client = new Client(0, this.nom, this.prenom, this.mdp, this.mail, this.telephone, this.adresse, this.codePostal, this.ville, this.societe);
+            try {
+                ClientManager.create(client);
+            } catch (UnavailableException ex) {
+                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return "profil";
+        }
+        else{
+            return "inscription";
+        }
+    }
+    
+    public String checkPassWordForModification()throws SQLException{
+        if(this.getMdp().equals(this.getMdp2())){
+            Client client = new Client(0, this.nom, this.prenom, this.mdp, this.mail, this.telephone, this.adresse, this.codePostal, this.ville, this.societe);
+            try {
+                ClientManager.setClient(client);
+            } catch (UnavailableException ex) {
+                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return "profil";
+        }
+        else{
+            return "inscription";
+        }
+    }
+
+    public void setMdp2(String mdp2) {
+        this.mdp2 = mdp2;
+    }
+            
+    public String getMdp2() {
+        return mdp2;
     }
 
     public int getId() {
@@ -126,5 +182,7 @@ public class Client {
     public void setSociete(String societe){
         this.societe = societe;
     }
+    
+     
     
 }
