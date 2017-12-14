@@ -3,6 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/*INSERT INTO PLAISIRDELIRE.LIVRE (ID, TITRE, RESUME, DATE, GENRE, AUTEUR) VALUES (1, 'p', 'l', DATE('2015-12-17'), 'o', 'poesie' );
+
+SELECT * FROM PLAISIRDELIRE.LIVRE FETCH FIRST 100 ROWS ONLY;
+*/
 package mypackage;
 
 import javax.faces.bean.ManagedBean;
@@ -26,38 +31,20 @@ public class Livre {
     private String date;    
     private String genre;
     private String auteur;
-    private boolean checkAuteur = false;
-    private boolean checkTitre = false;
-    
+    private int prix;
+  
     public Livre(){
         
     }
     
-    public Livre(int id, String titre, String resume, String date, String genre, String auteur) {
+    public Livre(int id, String titre, String resume, String date, String genre, String auteur, int prix) {
         this.id = id;
         this.titre = titre;
         this.resume = resume;
         this.date = date;
         this.genre = genre;
         this.auteur = auteur;
-    }
-
-    public boolean isCheckAuteur() {
-        return checkAuteur;
-    }
-
-    public boolean isCheckTitre() {
-        return checkTitre;
-    }
-
-    public void setCheckAuteur(boolean checkAuteur) {
-        this.checkAuteur = checkAuteur;
-        this.checkTitre = !checkAuteur;
-    }
-
-    public void setCheckTitre(boolean checkTitre) {
-        this.checkTitre = checkTitre;
-        this.checkAuteur = !checkTitre;
+        this.prix = prix;
     }
     
     public int getId() {
@@ -80,6 +67,9 @@ public class Livre {
     }
     public String getAuteur(){
         return auteur;
+    }
+    public int getPrix(){
+        return prix;
     }
 
     public void setId(int id) {
@@ -104,6 +94,8 @@ public class Livre {
         this.auteur = auteur;
     }
     
-    
+    public void setPrix(int prix){
+        this.prix = prix;
+    }
     
 }

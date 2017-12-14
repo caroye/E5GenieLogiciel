@@ -22,8 +22,8 @@ import javax.servlet.UnavailableException;
  */
 @ManagedBean
 @RequestScoped
-public class ClientManager {    
-    
+public class ClientManager {   
+   
     /**
      * Inscription
      */
@@ -37,7 +37,7 @@ public class ClientManager {
         
         String insertStatementStr = "INSERT INTO client VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String countStatementStr = "SELECT COUNT(*) FROM client";
-        
+       
         try {
             connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PlaisirDeLire","plaisirdelire", "plaisirdelire");
         } catch (SQLException ex) {
@@ -80,7 +80,6 @@ public class ClientManager {
         } catch (SQLException ex) {
             Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         
         PreparedStatement findStatement = connexion.prepareStatement(findStatementStr);
         findStatement.setString(1, mail);
@@ -94,23 +93,21 @@ public class ClientManager {
     }
     
     public static Client getClient(String mail, String mdp) throws UnavailableException, SQLException{    
-        
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (ClassNotFoundException cnfe) {
             throw new UnavailableException("Driver non trouve dans le classpath");
         }
         Connection connexion = null;
-        
+       
         String connectionStatementStr = "SELECT ID, NOM, PRENOM, ADRESSE, CP, VILLE, TELEPHONE, MAIL, SOCIETE, MDP FROM CLIENT WHERE MAIL = ? AND MDP = ?";
-        
+
         try {
             connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PlaisirDeLire","plaisirdelire", "plaisirdelire");
         } catch (SQLException ex) {
             Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
         PreparedStatement connectionStatement = connexion.prepareStatement(connectionStatementStr);
         connectionStatement.setString(1, mail);
         connectionStatement.setString(2, mdp); 
@@ -126,22 +123,21 @@ public class ClientManager {
     }
     
     public static void setClient(Client client) throws UnavailableException, SQLException{
+
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (ClassNotFoundException cnfe) {
             throw new UnavailableException("Driver non trouve dans le classpath");
         }
         Connection connexion = null;
-        
-        String modifyStatementStr = "UPDATE client SET NOM = ?, SET PRENOM = ?, SET ADRESSE = ?, SET CP = ?, SET VILLE = ?, SET TELEPHONE = ?, SET SOCIETE = ?, SET MDP = ? WHERE MAIL = ?";
+       
+        String modifyStatementStr = "UPDATE client SET NOM = ?, PRENOM = ?, ADRESSE = ?, CP = ?, VILLE = ?, TELEPHONE = ?, SOCIETE = ?, MDP = ? WHERE MAIL = ?";
         
         try {
             connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PlaisirDeLire","plaisirdelire", "plaisirdelire");
         } catch (SQLException ex) {
             Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        
         PreparedStatement modifyStatement = connexion.prepareStatement(modifyStatementStr);
         modifyStatement.setString(1, client.getNom());
         modifyStatement.setString(2, client.getPrenom());
@@ -162,7 +158,7 @@ public class ClientManager {
             throw new UnavailableException("Driver non trouve dans le classpath");
         }
         Connection connexion = null;
-        
+
         String removeStatementStr = "DELETE MDP, TELEPHONE, MAIL, ADRESSE, CP, VILLE, SOCIETE FROM CLIENT WHERE MAIL = ?";
         
         try {
@@ -170,13 +166,10 @@ public class ClientManager {
         } catch (SQLException ex) {
             Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         
         PreparedStatement removeStatement = connexion.prepareStatement(removeStatementStr);
         removeStatement.setString(1, mail);
         removeStatement.executeUpdate();           
-    }
-    public void updateClient(){
-        
+
     }
 }

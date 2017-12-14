@@ -5,6 +5,7 @@
  */
 package mypackage;
 
+import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -19,12 +20,16 @@ public class Commande {
     /**
      * Creates a new instance of Commande
      */
+    private int Id;
     private String date;
     private int prix;
+    private Map<String, Integer> liste; 
 
-    public Commande(String date, int prix) {
+    public Commande(String date, int prix, Map<String, Integer> liste, int id) {
         this.date = date;
         this.prix = prix;
+        this.liste = liste;
+        this.Id = id;
     }
 
     public String getDate() {
@@ -34,6 +39,12 @@ public class Commande {
     public int getPrix() {
         return prix;
     }
+    public Map<String, Integer> getListe(){
+        return liste;
+    }
+    public int getId(){
+        return Id;
+    }
 
     public void setDate(String date) {
         this.date = date;
@@ -42,7 +53,24 @@ public class Commande {
     public void setPrix(int prix) {
         this.prix = prix;
     }
+    public void setListe(Map<String, Integer> liste){
+        this.liste = liste;
+    }
+    public void setId(int id){
+        this.Id = id;
+    }
     
+    public void modifyListe(String titre, int quantite){
+        if(quantite == 0){
+            supprElementListe(titre);
+        }
+        else{
+            liste.put(titre, quantite);
+        }
+    }
     
+    public void supprElementListe(String titre){
+        liste.remove(titre);
+    }
     
 }

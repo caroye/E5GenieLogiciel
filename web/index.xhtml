@@ -10,6 +10,11 @@
         Hello from Facelets
         
         <h:button value="go to template" outcome="templateTest" />
+        <h:form>
+            <h:commandButton value="test" action="#{catalogueManager.getBookByGenre(&quot;poesie&quot;)}"/>
+            
+        </h:form>
+        
 
     </h:body>
 </html>
