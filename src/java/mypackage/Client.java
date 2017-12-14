@@ -25,7 +25,7 @@ public class Client {
      */
     private int id;
     private String nom;
-    private String prenom;
+    private String prenom = "user";
     private String mdp;
     private String mdp2;
     private String mail;
@@ -66,12 +66,44 @@ public class Client {
         this.societe = societe;
     }
     
-    public void connect() throws SQLException{
+    public String connect() throws SQLException{
+        Client client = null;
         try {
-            Client client = ClientManager.getClient(this.mail, this.mdp);
+            client = ClientManager.getClient(this.mail, this.mdp);
         } catch (UnavailableException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if (client !=null){
+            this.id = client.getId();           
+            this.nom = client.getNom();
+            this.prenom = client.getPrenom();
+            this.mdp = client.getMdp();
+            this.mail = client.getMail();
+            this.telephone = client.getTelephone();
+            this.adresse = client.getAdresse();
+            this.codePostal = client.getCodePostal();
+            this.ville = client.getVille();
+            this.societe = client.getSociete();
+             System.out.println(id +" "+ prenom +" "+ nom +" "+ mdp + " "+ mail+" "+telephone+" "+adresse+" "+codePostal+" "+ville+" "+societe);
+            return "profil";
+        }
+        else{
+            return "connexion";
+        }
+    }
+    
+    public String deconnexion(){
+        this.id = 0;
+        this.nom = "";
+        this.prenom = "user";
+        this.mdp = "";
+        this.mail = "";
+        this.telephone = 0;
+        this.adresse = "";
+        this.codePostal = 0;
+        this.ville = "";
+        this.societe = "";
+        return "catalogue";
     }
     
     public String checkPassWord() throws SQLException{

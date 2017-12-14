@@ -17,8 +17,6 @@
         <div id="top">            
              <h:form>
                 <h:graphicImage value="/resources/image/plaisirdelire.png" />
-                <h:inputText value="search"/>
-                <h:button image="/resources/image/search.png" style="width: 20px"/>
                 <h:button value="Sign up"  style="float: right;" outcome="inscription"/>
                 <h:button value ="Sign in" style="float: right;" outcome="connexion"/>
                 <h:button image="/resources/image/shopping-cart.png" style="float: right;"/>
@@ -41,6 +39,7 @@
             
         <!-- CONTENT __________________________________________________________________-->    
             <div id="content" class="left_content">
+                <h1 align="center">Votre profil</h1>
                 <h:form>
                     <p>
                         Si vous souhaitez modifier vos informations, modifiez les champs à modifier puis cliquez sur 'modifier'.<br/>
@@ -57,7 +56,7 @@
                         <h:inputText value="#{client.telephone}" required="false"></h:inputText>
                         
                         <h:outputLabel>Adresse mail* : </h:outputLabel>
-                        <h:outputLabel value="#{client.mail}"></h:outputLabel>>
+                        <h:inputText value="#{client.mail}"></h:inputText>
                         
                         <h:outputLabel>Adresse* : </h:outputLabel>
                         <h:inputText value="#{client.adresse}" required="false"></h:inputText>

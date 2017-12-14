@@ -10,6 +10,8 @@
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <h:outputStylesheet name="./css/cssVerticalMenu.css"/>
         <title>Facelets Template</title>
+        
+        
     </h:head>
 
     <h:body>
@@ -17,8 +19,6 @@
         <div id="top">            
             <h:form>
                 <h:graphicImage value="/resources/image/plaisirdelire.png" />
-                <h:inputText value="search"/>
-                <h:button image="/resources/image/search.png" style="width: 20px"/>
                 <h:button value="Sign up"  style="float: right;" outcome="inscription"/>
                 <h:button value ="Sign in" style="float: right;" outcome="connexion"/>
                 <h:button image="/resources/image/shopping-cart.png" style="float: right;"/>
@@ -43,8 +43,14 @@
             
         <!-- CONTENT __________________________________________________________________-->    
         <div id="content" class="left_content">
-                
-                
+            <h:form>
+                <h:panelGrid columns="2">
+                    <p>Vous recherchez (veuillez entrer un mot clé): </p>
+                    <h:inputText value="#"/>
+                </h:panelGrid>
+                <h:commandButton value="Rechercher par auteur"/>
+                <h:commandButton value="Rechercher par titre"/>
+            </h:form>                
         </div>
         
         

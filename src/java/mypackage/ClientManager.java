@@ -45,9 +45,14 @@ public class ClientManager {
         }
         PreparedStatement countStatement = connexion.prepareStatement(countStatementStr);
         ResultSet id = countStatement.executeQuery();
+        int next = 0;
+        while(id.next()){
+            next = Integer.parseInt(id.getString("1"));
+        }
         
+        System.out.println(" valeur de next: " + next);
         PreparedStatement insertStatement = connexion.prepareStatement(insertStatementStr);
-        insertStatement.setInt(1, id.getRow()+1);
+        insertStatement.setInt(1, next);
         insertStatement.setString(2, client.getNom());
         insertStatement.setString(3, client.getPrenom());
         insertStatement.setString(4, client.getAdresse());
@@ -81,8 +86,11 @@ public class ClientManager {
         findStatement.setString(1, mail);
         ResultSet rs = findStatement.executeQuery();           
     // public Client(int id, String nom, String prenom, String mdp, String mail, int telephone, String adresse, int codePostal, String ville, String societe) {
-        Client client = new Client(rs.getInt("ID"), rs.getString("NOM"), rs.getString("PRENOM"), rs.getString("MDP"), mail, rs.getInt("TELEPHONE"), rs.getString("ADRESSE"), rs.getInt("CP"), rs.getString("VILLE"), rs.getString("SOCIETE"));
-        return client;
+        if(rs.next()){
+            Client client = new Client(rs.getInt("ID"), rs.getString("NOM"), rs.getString("PRENOM"), rs.getString("MDP"), rs.getString("MAIL"), rs.getInt("TELEPHONE"), rs.getString("ADRESSE"), rs.getInt("CP"), rs.getString("VILLE"), rs.getString("SOCIETE"));
+            return client;
+        }
+        return null;
     }
     
     public static Client getClient(String mail, String mdp) throws UnavailableException, SQLException{    
@@ -94,7 +102,7 @@ public class ClientManager {
         }
         Connection connexion = null;
         
-        String connectionStatementStr = "SELECT ID, NOM, PRENOM, ADRESSE, CP, VILLE, TELEPHONE, MAIL, SOCIETE, FROM CLIENT WHERE MAIL = ? AND MDP = ?";
+        String connectionStatementStr = "SELECT ID, NOM, PRENOM, ADRESSE, CP, VILLE, TELEPHONE, MAIL, SOCIETE, MDP FROM CLIENT WHERE MAIL = ? AND MDP = ?";
         
         try {
             connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PlaisirDeLire","plaisirdelire", "plaisirdelire");
@@ -108,8 +116,13 @@ public class ClientManager {
         connectionStatement.setString(2, mdp); 
         ResultSet rs = connectionStatement.executeQuery();           
     // public Client(int id, String nom, String prenom, String mdp, String mail, int telephone, String adresse, int codePostal, String ville, String societe) {
-        Client client = new Client(rs.getInt("ID"), rs.getString("NOM"), rs.getString("PRENOM"), mdp, mail, rs.getInt("TELEPHONE"), rs.getString("ADRESSE"), rs.getInt("CP"), rs.getString("VILLE"), rs.getString("SOCIETE"));
-        return client;
+    
+        if(rs.next()){
+          Client client = new Client(rs.getInt("ID"), rs.getString("NOM"), rs.getString("PRENOM"), rs.getString("MDP"), rs.getString("MAIL"), rs.getInt("TELEPHONE"), rs.getString("ADRESSE"), rs.getInt("CP"), rs.getString("VILLE"), rs.getString("SOCIETE"));  
+          System.out.println(""+rs.getString("NOM"));
+          return client;
+        }
+        return null;
     }
     
     public static void setClient(Client client) throws UnavailableException, SQLException{

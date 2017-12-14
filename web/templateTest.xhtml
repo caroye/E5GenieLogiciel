@@ -17,11 +17,13 @@
         <div id="top"> 
             <h:form>
                 <h:graphicImage value="/resources/image/plaisirdelire.png" />
-                <h:inputText value="search"/>
-                <h:button image="/resources/image/search.png" style="width: 20px"/>
+                
                 <h:button value="Sign up"  style="float: right;" outcome="inscription"/>
                 <h:button value ="Sign in" style="float: right;" outcome="connexion"/>
+                <h:commandButton value="Log out" style="float: right" action="#{client.deconnexion}"/>
                 <h:button image="/resources/image/shopping-cart.png" style="float: right;"/>
+                <h:outputLabel value="Bievenue #{client.prenom}" style="float:right" />
+                
             </h:form>
             
             
