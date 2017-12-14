@@ -14,13 +14,18 @@
 
     <h:body>
         <!-- TOP __________________________________________________________________-->
-        <div id="top">            
-            <h:graphicImage value="/resources/image/plaisirdelire.png" />
-            <h:inputText value="search" style="float: center;"/>
-            <h:graphicImage value="/resources/image/search.png" width="1%" style="float: center;"/>
-            <h:button value="Sign up"  style="float: right;"/>
-            <h:button value ="Sign in" style="float: right;" />
-            <h:graphicImage value ="/resources/image/shopping-cart.png" style="float: right;"/>
+        <div id="top"> 
+            <h:form>
+                <h:graphicImage value="/resources/image/plaisirdelire.png" />
+                
+                <h:button value="Sign up"  style="float: right;" outcome="inscription"/>
+                <h:button value ="Sign in" style="float: right;" outcome="connexion"/>
+                <h:commandButton value="Log out" style="float: right" action="#{client.deconnexion}"/>
+                <h:button image="/resources/image/shopping-cart.png" style="float: right;"/>
+                <h:outputLabel value="Bievenue #{client.prenom}" style="float:right" />
+                
+            </h:form>
+            
             
         </div>
         
@@ -30,9 +35,9 @@
                 <div id="vertical-menu">
                     <a href="templateTest.xhtml" class="active">Présentation</a>
                     <a href="catalogue.xhtml">Catalogue</a>
-                    <a href="#">Nouveauté</a>
-                    <a href="#">Recherche</a>
-                    <a href="#">S'abonner</a>
+                    <a href="nouveaute.xhtml">Nouveauté</a>
+                    <a href="rechercher.xhtml">Recherche</a>
+                    <a href="profil.xhtml">S'abonner</a>
                 </div>
               
             </div>
@@ -40,34 +45,38 @@
         <!-- CONTENT __________________________________________________________________-->    
             <div id="content" class="left_content">
                 
-                <h:panelGrid columns="3" cellpadding="10" width="100% -150px">
+                <h:panelGrid columns="1" cellpadding="10" width="100% -150px">
                     <h:panelGroup>
-                        <h1 align="center">Article 1</h1><br/>
+                        <h1 align="center">Plaisir de Lire arrive enfin en ligne !</h1><br/>
                         <p align="center">
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
+                            La maison d'édition "Plaisir de Lire" dispose mainteant de son propre site internet !<br/>
+                            Vous pouvez d'ores et déjà retrouver toutes nos offres sur ce site. 
+                            Ce dernier vous permet d'effectuer des commandes, des recherches de livres comme si
+                            vous étiez en magasin ! <br/> 
+                            Lorsque vous passez commande, les livres sont livrés directement chez vous !<br/>
+                            
+                            Nous vous invitons a consulter notre catalogue ainsi que les nouveautés qui seront
+                            mises à jour régulièrement.<br/>
+                            Les livres ne sont qu'à quelques clics de vous !
                         </p>
                     </h:panelGroup>
-                    
+                    <br/>
+                    <br/>
                     <h:panelGroup>
-                        <h1 align="center">Article 2</h1><br/>
+                        <h1 align="center">Vous êtes professionel ?</h1><br/>
                         <p align="center">
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
+                            Si vous êtes professionnel, n'oubliez pas de l'indiquer lors de votre inscription
+                            où via le bouton s'abonner. Cela vous permettra de bénéficier de 10% de réduction sur vos achats !                           
                         </p>
                     </h:panelGroup>
-                    
+                    <br/>
+                    <br/>
                     <h:panelGroup>
-                        <h1 align="center">Article 3</h1><br/>
+                        <h1 align="center">Vous ne trouvez pas votre bonheur ?</h1><br/>
                         <p align="center">
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
-                            blablablablablablablablablablablablablablablablablabla
+                            Il se peut que certains de nos livres ne soient pas référencés. Si tel est le cas, n'hésitez pas à nous contacter. 
+                            Nous ferons notre possible pour remédier à ce problème et trouver une solution !
+                            
                         </p>
                     </h:panelGroup>
                     
@@ -76,8 +85,9 @@
         </div>
         
         <!-- BOTTOM __________________________________________________________________-->
-        <div id="bottom">
-            <p align="center">&copy; Plaisir de lire</p>
+        <div id="bottom"  class="absolute">
+            <a href="admin.xhtml">Admin</a>
+            <p align="center">&copy; Plaisir de lire</p>            
         </div>
 
     </h:body>

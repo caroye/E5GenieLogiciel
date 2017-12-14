@@ -26,7 +26,13 @@ public class Livre {
     private String date;    
     private String genre;
     private String auteur;
-
+    private boolean checkAuteur = false;
+    private boolean checkTitre = false;
+    
+    public Livre(){
+        
+    }
+    
     public Livre(int id, String titre, String resume, String date, String genre, String auteur) {
         this.id = id;
         this.titre = titre;
@@ -36,6 +42,24 @@ public class Livre {
         this.auteur = auteur;
     }
 
+    public boolean isCheckAuteur() {
+        return checkAuteur;
+    }
+
+    public boolean isCheckTitre() {
+        return checkTitre;
+    }
+
+    public void setCheckAuteur(boolean checkAuteur) {
+        this.checkAuteur = checkAuteur;
+        this.checkTitre = !checkAuteur;
+    }
+
+    public void setCheckTitre(boolean checkTitre) {
+        this.checkTitre = checkTitre;
+        this.checkAuteur = !checkTitre;
+    }
+    
     public int getId() {
         return id;
     }

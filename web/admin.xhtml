@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputStylesheet name="./css/cssVerticalMenu.css"/>
+        <h:outputStylesheet name="./css/cssAdmin.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <!-- TOP __________________________________________________________________-->
+        <div id="top"> 
+            <h:form>
+                <h:graphicImage value="/resources/image/plaisirdelire.png" />
+                <h:button value="Sign up"  style="float: right;" outcome="inscription"/>
+                <h:button value ="Sign in" style="float: right;" outcome="connexion"/>
+                <h:button image="/resources/image/shopping-cart.png" style="float: right;"/>
+            </h:form>
+            
+            
+        </div>
+        
+        <!-- LEFT __________________________________________________________________-->
+        <div>
+            <div id="left">
+                <div id="vertical-menu">
+                    <a href="templateTest.xhtml" >Présentation</a>
+                    <a href="catalogue.xhtml">Catalogue</a>
+                    <a href="nouveaute.xhtml">Nouveauté</a>
+                    <a href="rechercher.xhtml">Recherche</a>
+                    <a href="profil.xhtml">S'abonner</a>
+                    <a href="admin.xhtml" class="active">Panneau d'administration</a>
+                </div>
+              
+            </div>
+            
+        <!-- CONTENT __________________________________________________________________-->    
+            <div id="content" class="left_content">
+                <h:panelGrid columns="1" width="100%">
+                    <p align="center">Ajouter un livre</p>
+                </h:panelGrid>
+                
+                <h:panelGrid columns="7" cellpadding="10" width="100%" columnClasses="col1, col2, col3, col4, col4, col5, col6, col7">
+                    <h:panelGroup>
+                            <!-- ID -->
+                        <h:outputText value="ID"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                            <!-- Titre -->
+                        <h:outputText value="Titre" />
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                            <!-- Auteur -->
+                        <h:outputText value="Auteur" />
+                    </h:panelGroup>
+                        
+                    <h:panelGroup>
+                            <!-- Date -->
+                        <h:outputText value="Date" />
+                    </h:panelGroup>
+                        
+                    <h:panelGroup>
+                            <!-- Genre -->
+                        <h:outputText value="Genre" />
+                    </h:panelGroup>
+                        
+                    <h:panelGroup>
+                            <!-- Résumé -->
+                        <h:outputText value="Résumé" />
+                    </h:panelGroup>
+                        
+                    <h:panelGroup>
+                            <!-- Prix -->
+                        <h:outputText value="Prix" />
+                    </h:panelGroup>
+
+                </h:panelGrid>
+                <h:form>
+                    <h:panelGrid columns="7" cellpadding="10" width="100% -150px">
+                        <h:panelGroup>
+                            <!-- ID -->
+                            <h:inputText value="" />
+                        </h:panelGroup>
+
+                        <h:panelGroup>
+                            <!-- Titre -->
+                            <h:inputText value="" />
+                        </h:panelGroup>
+
+                        <h:panelGroup>
+                            <!-- Auteur -->
+                            <h:inputText value="" />
+                        </h:panelGroup>
+                        
+                        <h:panelGroup>
+                            <!-- Date -->
+                            <h:inputText value="" />
+                        </h:panelGroup>
+                        
+                        <h:panelGroup>
+                            <!-- Genre -->
+                            <h:inputText value="" />
+                        </h:panelGroup>
+                        
+                        <h:panelGroup>
+                            <!-- Résumé -->
+                            <h:inputText value="" />
+                        </h:panelGroup>
+                        
+                        <h:panelGroup>
+                            <!-- Prix -->
+                            <h:inputText value="" />
+                        </h:panelGroup>
+
+                    </h:panelGrid>
+                    <h:commandButton value="Ajouter" />
+                </h:form>
+                <br/><br/>
+                <h:form>
+                    <h:outputText value="Ajouter des livres depuis un fichier .xml ou .csv :" /><br/>
+                    <h:inputFile value="" />
+                    <h:commandButton value="Ajouter" />
+                </h:form>    
+                <p>_______________________________________________________________________________________________________________________________________________________________________</p>
+                <br/>
+                <h:form>
+                    <h:outputText value="Rechercher un utilisateur grâce à son adresse mail :" /><br/>
+                    <h:inputText value=""/>
+                    <h:commandButton value="Rechercher" />
+                </h:form>
+                <br/>
+                <h:form>
+                    <h:outputText value="Supprimer un utilisateur grâce à son adresse mail :" /><br/>
+                    <h:inputText value="" />
+                    <h:commandButton value="Supprimer" action="#{clientManager.removeClient(mail)}"/>
+                </h:form>
+                
+            </div>
+        </div>
+        
+        <!-- BOTTOM __________________________________________________________________-->
+        <div id="bottom"  class="absolute">
+            <a href="">Admin</a>
+            <p align="center">&copy; Plaisir de lire</p>
+        </div>
+
+    </h:body>
+
+</html>
