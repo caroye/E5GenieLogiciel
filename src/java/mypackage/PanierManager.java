@@ -19,11 +19,11 @@ public class PanierManager {
     /**
      * A remplir
      */
-    public void get(){
+    public void getAdresse(){
         
     }
     
-    public void set(){
+    public void setAdresse(){
         
     }
     

@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.servlet.UnavailableException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -29,7 +30,7 @@ public class CatalogueManager {
     
    
     //ajoute un livre dans la base de donnée
-    public void add() throws UnavailableException, SQLException{
+    public void add(int id, String titre, String resume, String date, String genre, String auteur) throws UnavailableException, SQLException{
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (ClassNotFoundException cnfe) {
@@ -37,24 +38,23 @@ public class CatalogueManager {
         }
         Connection connexion = null;
         
-         String insertStatementStr = "INSERT INTO requete VALUES(?, ?, ?, ?, ?, ?)";
-        String selectCustomerStr = "SELECT PRENOM, NOM FROM client WHERE EMAIL = ?";
-       
+        String insertStatementStr = "INSERT INTO LIVRE (ID, TITRE, RESUME, DATE, GENRE, AUTEUR) VALUES(?, ?, ?, ?, ?, ?)";
+        
         try {
             connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/hotline","kevin", "esiee");
         } catch (SQLException ex) {
             Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Livre livre = new Livre(1, "plop", "plop", "plop", "plop", "plop");
+        Livre livre = new Livre(id, titre, resume, date, genre, auteur);
         PreparedStatement insertStatement = connexion.prepareStatement(insertStatementStr);
         insertStatement.setInt(1, livre.getId());
-        insertStatement.setString(2, livre.getAuteur());
-        insertStatement.setString(3, livre.getDate());
-        insertStatement.setString(4, livre.getResume());
+        insertStatement.setString(2, livre.getTitre());
+        insertStatement.setString(3, livre.getResume());
+        insertStatement.setString(4, livre.getDate()); //changer type !!!
         insertStatement.setString(5, livre.getGenre());
-        insertStatement.setString(6, livre.getTitre());
+        insertStatement.setString(6, livre.getAuteur());
         insertStatement.executeUpdate();
-        PreparedStatement selectStatement = connexion.prepareStatement(selectCustomerStr);
+        //PreparedStatement selectStatement = connexion.prepareStatement(selectCustomerStr);
     }
     //ajoute la liste de livre d'un fichier csv dans la base de donnée
     public void addMultiple(){
@@ -65,22 +65,121 @@ public class CatalogueManager {
         
     }
     
-    public void getBookByGenre(){
+    //retourne la liste des livre du genre en paramètre
+    public String getBookByGenre(String genre) throws UnavailableException, SQLException{
+        //System.out.println("plop");
+       
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException cnfe) {
+            throw new UnavailableException("Driver non trouve dans le classpath");
+        }
+        Connection connexion = null;
         
+        String selectCustomerStr = "SELECT ID, TITRE, RESUME, DATE, GENRE, AUTEUR, PRIX FROM LIVRE WHERE GENRE = ?";
+       
+        try {
+            connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PLAISIRDELIRE","plaisirdelire", "plaisirdelire");
+        } catch (SQLException ex) {
+            Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        PreparedStatement selectStatement = connexion.prepareStatement(selectCustomerStr);
+        selectStatement.setString(1, genre);
+        ResultSet rs = selectStatement.executeQuery();
+        String res = "[";
+        while(rs.next()){
+            res = res + "{"+rs.getString("TITRE")+","+rs.getString("RESUME")+","+rs.getString("GENRE")+","+rs.getString("AUTEUR")+","+rs.getInt("PRIX")+"}\n";
+        }
+        res = res +"]";
+        return res;
     }
-    public void getBookByAuteur(){
+    //retourne la liste des livre de l'auteur en paramètre
+    public String getBookByAuteur(String auteur) throws UnavailableException, SQLException{
         
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException cnfe) {
+            throw new UnavailableException("Driver non trouve dans le classpath");
+        }
+        Connection connexion = null;
+        
+        String selectCustomerStr = "SELECT ID, TITRE, RESUME, DATE, GENRE, AUTEUR, PRIX FROM LIVRE WHERE AUTEUR = ?";
+       
+        try {
+            connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PLAISIRDELIRE","plaisirdelire", "plaisirdelire");
+        } catch (SQLException ex) {
+            Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        PreparedStatement selectStatement = connexion.prepareStatement(selectCustomerStr);
+        selectStatement.setString(1, auteur);
+        ResultSet rs = selectStatement.executeQuery();
+        String res = "[";
+        while(rs.next()){
+            res = res + "{"+rs.getString("TITRE")+","+rs.getString("RESUME")+","+rs.getString("GENRE")+","+rs.getString("AUTEUR")+","+rs.getInt("PRIX")+"}\n";
+        }
+        res = res +"]";
+        return res;
     }
-    public void getBookByTitre(){
+    //retourne la liste des livre du titre en paramètre
+    public String getBookByTitre(String titre) throws UnavailableException, SQLException{
         
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException cnfe) {
+            throw new UnavailableException("Driver non trouve dans le classpath");
+        }
+        Connection connexion = null;
+        
+        String selectCustomerStr = "SELECT ID, TITRE, RESUME, DATE, GENRE, AUTEUR, PRIX FROM LIVRE WHERE TITRE = ?";
+       
+        try {
+            connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PLAISIRDELIRE","plaisirdelire", "plaisirdelire");
+        } catch (SQLException ex) {
+            Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        PreparedStatement selectStatement = connexion.prepareStatement(selectCustomerStr);
+        selectStatement.setString(1, titre);
+        ResultSet rs = selectStatement.executeQuery();
+        String res = "[";
+        while(rs.next()){
+            res = res + "{"+rs.getString("TITRE")+","+rs.getString("RESUME")+","+rs.getString("GENRE")+","+rs.getString("AUTEUR")+","+rs.getInt("PRIX")+"}\n";
+        }
+        res = res +"]";
+        return res;
     }
     
     public void setBook(){
         
     }
     
-    public void removeBook(){
+    //retourne true si la suppression du livre du titre en paramètre est effectué
+    public boolean removeBook(String titre) throws UnavailableException, SQLException{
         
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException cnfe) {
+            throw new UnavailableException("Driver non trouve dans le classpath");
+        }
+        Connection connexion = null;
+        
+        String supprCustomerStr = "DELETE FROM LIVRE WHERE TITRE = ?";
+        String selectCustomerStr = "SELECT * FROM LIVRE WHERE TITRE = ?";
+        
+        try {
+            connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PLAISIRDELIRE","plaisirdelire", "plaisirdelire");
+        } catch (SQLException ex) {
+            Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        PreparedStatement deleteStatement = connexion.prepareStatement(supprCustomerStr);
+        deleteStatement.setString(1, titre);
+        PreparedStatement selectStatement = connexion.prepareStatement(selectCustomerStr);
+        ResultSet rs = selectStatement.executeQuery();
+        if(rs.next()) return true;
+        else return false;
     }
     
 }

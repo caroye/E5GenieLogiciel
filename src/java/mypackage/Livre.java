@@ -3,6 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/*INSERT INTO PLAISIRDELIRE.LIVRE (ID, TITRE, RESUME, DATE, GENRE, AUTEUR) VALUES (1, 'p', 'l', DATE('2015-12-17'), 'o', 'poesie' );
+
+SELECT * FROM PLAISIRDELIRE.LIVRE FETCH FIRST 100 ROWS ONLY;
+*/
 package mypackage;
 
 import javax.faces.bean.ManagedBean;
