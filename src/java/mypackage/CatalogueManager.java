@@ -30,7 +30,7 @@ public class CatalogueManager {
     
    
     //ajoute un livre dans la base de donnée
-    public void add(int id, String titre, String resume, String date, String genre, String auteur) throws UnavailableException, SQLException{
+    public static void add(Livre livre) throws UnavailableException, SQLException{
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (ClassNotFoundException cnfe) {
@@ -41,11 +41,10 @@ public class CatalogueManager {
         String insertStatementStr = "INSERT INTO LIVRE (ID, TITRE, RESUME, DATE, GENRE, AUTEUR) VALUES(?, ?, ?, ?, ?, ?)";
         
         try {
-            connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/hotline","kevin", "esiee");
+            connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PLAISIRDELIRE","plaisirdelire", "plaisirdelire");
         } catch (SQLException ex) {
             Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Livre livre = new Livre(id, titre, resume, date, genre, auteur);
         PreparedStatement insertStatement = connexion.prepareStatement(insertStatementStr);
         insertStatement.setInt(1, livre.getId());
         insertStatement.setString(2, livre.getTitre());
@@ -57,16 +56,13 @@ public class CatalogueManager {
         //PreparedStatement selectStatement = connexion.prepareStatement(selectCustomerStr);
     }
     //ajoute la liste de livre d'un fichier csv dans la base de donnée
-    public void addMultiple(){
+    public static void addMultiple(){
         
     }
     
-    public void find(){
         
-    }
-    
     //retourne la liste des livre du genre en paramètre
-    public String getBookByGenre(String genre) throws UnavailableException, SQLException{
+    public static String getBookByGenre(String genre) throws UnavailableException, SQLException{
         //System.out.println("plop");
        
         try {
@@ -95,7 +91,7 @@ public class CatalogueManager {
         return res;
     }
     //retourne la liste des livre de l'auteur en paramètre
-    public String getBookByAuteur(String auteur) throws UnavailableException, SQLException{
+    public static String getBookByAuteur(String auteur) throws UnavailableException, SQLException{
         
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -123,7 +119,7 @@ public class CatalogueManager {
         return res;
     }
     //retourne la liste des livre du titre en paramètre
-    public String getBookByTitre(String titre) throws UnavailableException, SQLException{
+    public static String getBookByTitre(String titre) throws UnavailableException, SQLException{
         
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -150,13 +146,37 @@ public class CatalogueManager {
         res = res +"]";
         return res;
     }
-    
-    public void setBook(){
-        
+    //update
+    public static void setBook(Livre livre) throws UnavailableException, SQLException{
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException cnfe) {
+            throw new UnavailableException("Driver non trouve dans le classpath");
+        }
+        Connection connexion = null;
+       
+        String modifyStatementStr = "UPDATE LIVRE SET TITRE = ?, RESUME = ?, DATE = ?, GENRE = ?, AUTEUR = ?, PRIX = ? WHERE TITRE = ?";
+       
+        try {
+            connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PlaisirDeLire","plaisirdelire", "plaisirdelire");
+        } catch (SQLException ex) {
+            Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       
+        PreparedStatement modifyStatement = connexion.prepareStatement(modifyStatementStr);
+        modifyStatement.setString(1, livre.getTitre());
+        modifyStatement.setString(2, livre.getResume());
+        modifyStatement.setString(3, livre.getDate());
+        modifyStatement.setString(4, livre.getGenre());
+        modifyStatement.setString(5, livre.getAuteur());
+        modifyStatement.setInt(6, livre.getPrix());
+        modifyStatement.setString(7, livre.getTitre());
+        modifyStatement.executeUpdate();
     }
     
     //retourne true si la suppression du livre du titre en paramètre est effectué
-    public boolean removeBook(String titre) throws UnavailableException, SQLException{
+    public static boolean removeBook(String titre) throws UnavailableException, SQLException{
         
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");

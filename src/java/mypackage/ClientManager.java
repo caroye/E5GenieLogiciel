@@ -81,8 +81,11 @@ public class ClientManager {
         findStatement.setString(1, mail);
         ResultSet rs = findStatement.executeQuery();          
     // public Client(int id, String nom, String prenom, String mdp, String mail, int telephone, String adresse, int codePostal, String ville, String societe) {
-        Client client = new Client(rs.getInt("ID"), rs.getString("NOM"), rs.getString("PRENOM"), rs.getString("MDP"), mail, rs.getInt("TELEPHONE"), rs.getString("ADRESSE"), rs.getInt("CP"), rs.getString("VILLE"), rs.getString("SOCIETE"));
-        return client;
+        if(rs.next()){
+            Client client = new Client(rs.getInt("ID"), rs.getString("NOM"), rs.getString("PRENOM"), rs.getString("MDP"), mail, rs.getInt("TELEPHONE"), rs.getString("ADRESSE"), rs.getInt("CP"), rs.getString("VILLE"), rs.getString("SOCIETE"));
+            return client;
+        }
+        else return null;        
     }
    
     public static Client getClient(String mail, String mdp) throws UnavailableException, SQLException{   
@@ -94,7 +97,7 @@ public class ClientManager {
         }
         Connection connexion = null;
        
-        String connectionStatementStr = "SELECT ID, NOM, PRENOM, ADRESSE, CP, VILLE, TELEPHONE, MAIL, SOCIETE, FROM CLIENT WHERE MAIL = ? AND MDP = ?";
+        String connectionStatementStr = "SELECT ID, NOM, PRENOM, ADRESSE, CP, VILLE, TELEPHONE, MAIL, SOCIETE, MDP FROM CLIENT WHERE MAIL = ? AND MDP = ?";
        
         try {
             connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PlaisirDeLire","plaisirdelire", "plaisirdelire");
@@ -108,10 +111,14 @@ public class ClientManager {
         connectionStatement.setString(2, mdp);
         ResultSet rs = connectionStatement.executeQuery();          
     // public Client(int id, String nom, String prenom, String mdp, String mail, int telephone, String adresse, int codePostal, String ville, String societe) {
-        Client client = new Client(rs.getInt("ID"), rs.getString("NOM"), rs.getString("PRENOM"), mdp, mail, rs.getInt("TELEPHONE"), rs.getString("ADRESSE"), rs.getInt("CP"), rs.getString("VILLE"), rs.getString("SOCIETE"));
-        return client;
+        
+        if(rs.next()){
+            Client client = new Client(rs.getInt("ID"), rs.getString("NOM"), rs.getString("PRENOM"), rs.getString("MDP"), rs.getString("MAIL"), rs.getInt("TELEPHONE"), rs.getString("ADRESSE"), rs.getInt("CP"), rs.getString("VILLE"), rs.getString("SOCIETE"));
+            return client;
+        }
+        else return null;
     }
-   
+   //update
     public static void setClient(Client client) throws UnavailableException, SQLException{
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -162,8 +169,5 @@ public class ClientManager {
         PreparedStatement removeStatement = connexion.prepareStatement(removeStatementStr);
         removeStatement.setString(1, mail);
         removeStatement.executeUpdate();          
-    }
-    public void updateClient(){
-       
     }
 }

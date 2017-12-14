@@ -31,14 +31,16 @@ public class Livre {
     private String date;    
     private String genre;
     private String auteur;
+    private int prix;
 
-    public Livre(int id, String titre, String resume, String date, String genre, String auteur) {
+    public Livre(int id, String titre, String resume, String date, String genre, String auteur, int prix) {
         this.id = id;
         this.titre = titre;
         this.resume = resume;
         this.date = date;
         this.genre = genre;
         this.auteur = auteur;
+        this.prix = prix;
     }
 
     public int getId() {
@@ -61,6 +63,9 @@ public class Livre {
     }
     public String getAuteur(){
         return auteur;
+    }
+    public int getPrix(){
+        return prix;
     }
 
     public void setId(int id) {
@@ -85,6 +90,8 @@ public class Livre {
         this.auteur = auteur;
     }
     
-    
+    public void setPrix(int prix){
+        this.prix = prix;
+    }
     
 }
