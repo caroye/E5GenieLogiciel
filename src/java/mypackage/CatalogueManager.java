@@ -59,7 +59,7 @@ public class CatalogueManager {
     public static void addMultiple(){
         
     }
-    
+   
         
     //retourne la liste des livre du genre en paramètre
     public static String getBookByGenre(String genre) throws UnavailableException, SQLException{

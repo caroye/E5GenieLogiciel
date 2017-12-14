@@ -42,7 +42,7 @@ public class Livre {
         this.auteur = auteur;
         this.prix = prix;
     }
-
+    
     public int getId() {
         return id;
     }
