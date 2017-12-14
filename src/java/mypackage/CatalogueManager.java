@@ -38,21 +38,31 @@ public class CatalogueManager {
         }
         Connection connexion = null;
         
-        String insertStatementStr = "INSERT INTO LIVRE (ID, TITRE, RESUME, DATE, GENRE, AUTEUR) VALUES(?, ?, ?, ?, ?, ?)";
+        String insertStatementStr = "INSERT INTO LIVRE (ID, TITRE, RESUME, DATE, GENRE, AUTEUR, PRIX) VALUES(?, ?, ?, ?, ?, ?)";
+        String countStatementStr = "SELECT COUNT(*) FROM client";
         
         try {
             connexion = DriverManager.getConnection("jdbc:derby://localhost:1527/PLAISIRDELIRE","plaisirdelire", "plaisirdelire");
         } catch (SQLException ex) {
             Logger.getLogger(Livre.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        PreparedStatement countStatement = connexion.prepareStatement(countStatementStr);
+        ResultSet id = countStatement.executeQuery();
+        int next = 0;
+        while(id.next()){
+            next = Integer.parseInt(id.getString("1"));
+        }
         PreparedStatement insertStatement = connexion.prepareStatement(insertStatementStr);
-        insertStatement.setInt(1, livre.getId());
+        insertStatement.setInt(1, next);
         insertStatement.setString(2, livre.getTitre());
         insertStatement.setString(3, livre.getResume());
-        insertStatement.setString(4, livre.getDate()); //changer type !!!
+        insertStatement.setDate(4, livre.getDate()); //changer type !!!
         insertStatement.setString(5, livre.getGenre());
         insertStatement.setString(6, livre.getAuteur());
+        insertStatement.setInt(7, livre.getPrix());
         insertStatement.executeUpdate();
+        System.out.println("livre ajouté");
         //PreparedStatement selectStatement = connexion.prepareStatement(selectCustomerStr);
     }
     //ajoute la liste de livre d'un fichier csv dans la base de donnée
@@ -88,10 +98,12 @@ public class CatalogueManager {
             res = res + "{"+rs.getString("TITRE")+","+rs.getString("RESUME")+","+rs.getString("GENRE")+","+rs.getString("AUTEUR")+","+rs.getInt("PRIX")+"}\n";
         }
         res = res +"]";
+        System.out.println(res);
         return res;
     }
     //retourne la liste des livre de l'auteur en paramètre
-    public static String getBookByAuteur(String auteur) throws UnavailableException, SQLException{
+    public static Livre getBookByAuteur() throws UnavailableException, SQLException{
+        String auteur = Livre.requete;
         
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -113,14 +125,17 @@ public class CatalogueManager {
         ResultSet rs = selectStatement.executeQuery();
         String res = "[";
         while(rs.next()){
+            Livre livre = new Livre(rs.getInt("ID"),rs.getString("TITRE"),rs.getString("RESUME"),rs.getDate("DATE"),rs.getString("GENRE"),rs.getString("AUTEUR"),rs.getInt("PRIX"));
             res = res + "{"+rs.getString("TITRE")+","+rs.getString("RESUME")+","+rs.getString("GENRE")+","+rs.getString("AUTEUR")+","+rs.getInt("PRIX")+"}\n";
+            return livre;
         }
         res = res +"]";
-        return res;
+        System.out.println(res);
+        return null;
     }
     //retourne la liste des livre du titre en paramètre
-    public static String getBookByTitre(String titre) throws UnavailableException, SQLException{
-        
+    public static Livre getBookByTitre() throws UnavailableException, SQLException{
+        String titre = Livre.requete;
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (ClassNotFoundException cnfe) {
@@ -141,10 +156,12 @@ public class CatalogueManager {
         ResultSet rs = selectStatement.executeQuery();
         String res = "[";
         while(rs.next()){
+            Livre livre = new Livre(rs.getInt("ID"),rs.getString("TITRE"),rs.getString("RESUME"),rs.getDate("DATE"),rs.getString("GENRE"),rs.getString("AUTEUR"),rs.getInt("PRIX"));
             res = res + "{"+rs.getString("TITRE")+","+rs.getString("RESUME")+","+rs.getString("GENRE")+","+rs.getString("AUTEUR")+","+rs.getInt("PRIX")+"}\n";
+            return livre;
         }
         res = res +"]";
-        return res;
+        return null;
     }
     //update
     public static void setBook(Livre livre) throws UnavailableException, SQLException{
@@ -167,7 +184,7 @@ public class CatalogueManager {
         PreparedStatement modifyStatement = connexion.prepareStatement(modifyStatementStr);
         modifyStatement.setString(1, livre.getTitre());
         modifyStatement.setString(2, livre.getResume());
-        modifyStatement.setString(3, livre.getDate());
+        modifyStatement.setDate(3, livre.getDate());
         modifyStatement.setString(4, livre.getGenre());
         modifyStatement.setString(5, livre.getAuteur());
         modifyStatement.setInt(6, livre.getPrix());

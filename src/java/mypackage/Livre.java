@@ -10,8 +10,13 @@ SELECT * FROM PLAISIRDELIRE.LIVRE FETCH FIRST 100 ROWS ONLY;
 */
 package mypackage;
 
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.servlet.UnavailableException;
 
 /**
  *
@@ -28,16 +33,18 @@ public class Livre {
     private int id;
     private String titre;
     private String resume;
-    private String date;    
+    private Date date;    
     private String genre;
     private String auteur;
     private int prix;
+    public static String requete;
+    
   
     public Livre(){
         
     }
     
-    public Livre(int id, String titre, String resume, String date, String genre, String auteur, int prix) {
+    public Livre(int id, String titre, String resume, Date date, String genre, String auteur, int prix) {
         this.id = id;
         this.titre = titre;
         this.resume = resume;
@@ -46,7 +53,60 @@ public class Livre {
         this.auteur = auteur;
         this.prix = prix;
     }
-    
+
+    public String getRequete() {
+        return requete;
+    }
+
+    public void setRequete(String requete) {
+        this.requete = requete;
+    }
+    public String getBookByAuteur() throws UnavailableException, SQLException{
+        Livre livre = CatalogueManager.getBookByAuteur();
+        if(livre !=null){
+            this.id = livre.getId();
+            this.titre = livre.getTitre();
+            this.resume = livre.getResume();
+            this.date = livre.getDate();
+            this.genre = livre.getGenre();
+            this.auteur = livre.getAuteur();
+            this.prix = livre.getPrix();
+        }
+        else{
+            this.titre = "";
+            this.resume = "";
+            this.date = null;
+            this.genre = "";
+            this.auteur = "";
+            this.prix = 0;
+        }
+        
+        
+        return "rechercher";
+    }
+    public String getBookByTitre() throws UnavailableException, SQLException{
+        Livre livre = CatalogueManager.getBookByTitre();
+        if(livre != null){
+            //this.id = livre.getId();
+            this.titre = livre.getTitre();
+            this.resume = livre.getResume();
+            this.date = livre.getDate();
+            this.genre = livre.getGenre();
+            this.auteur = livre.getAuteur();
+            this.prix = livre.getPrix();
+        }
+        else{
+            this.titre = "";
+            this.resume = "";
+            this.date = null;
+            this.genre = "";
+            this.auteur = "";
+            this.prix = 0;
+        }
+        
+        
+        return "rechercher";
+    }
     public int getId() {
         return id;
     }
@@ -59,7 +119,7 @@ public class Livre {
         return resume;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
     public String getGenre(){
@@ -84,8 +144,9 @@ public class Livre {
         this.resume = resume;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(String date) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        this.date = (Date) formatter.parse(date);
     }
     public void setGenre(String genre){
         this.genre = genre;

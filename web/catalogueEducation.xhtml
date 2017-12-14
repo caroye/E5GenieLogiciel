@@ -9,6 +9,7 @@
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <h:outputStylesheet name="./css/cssVerticalMenu.css"/>
+        <h:outputStylesheet name="./css/cssBookList.css"/>
         <title>Facelets Template</title>
     </h:head>
 
@@ -19,7 +20,7 @@
                 <h:graphicImage value="/resources/image/plaisirdelire.png" />
                 <h:button value="Sign up"  style="float: right;" outcome="inscription"/>
                 <h:button value ="Sign in" style="float: right;" outcome="connexion"/>
-                <h:button image="/resources/image/shopping-cart.png" style="float: right;"/>
+                <h:button image="/resources/image/shopping-cart.png" style="float: right;" outcome="panier"/>
             </h:form>
             
         </div>
@@ -42,7 +43,89 @@
         </div>  
         <!-- CONTENT __________________________________________________________________-->    
         <div id="content" class="left_content">
-                               
+          <h:panelGrid columns="1" cellpadding="10" width="100%">
+                    <h1 align="center">Education</h1><br/>
+                </h:panelGrid>
+               <!-- Noms des colonnes -->
+               <h:panelGrid columns="6" cellpadding="10"  columnClasses="col1, col2, col3, col4, col5, col6">
+                    <h:panelGroup>
+                        <h1 align="center">Titre</h1><br/>                       
+                    </h:panelGroup>                   
+                    <h:panelGroup>
+                        <h1 align="center">Auteur</h1><br/>
+                    </h:panelGroup>                   
+                    <h:panelGroup>
+                        <h1 align="center">Date</h1><br/>
+                    </h:panelGroup>
+                     <h:panelGroup>
+                        <h1 align="center">Résumé</h1><br/>
+                    </h:panelGroup>
+                     <h:panelGroup>
+                        <h1 align="center">Quantité</h1><br/>
+                    </h:panelGroup>
+                     <h:panelGroup>
+                        <h1 align="center">Ajout</h1><br/>
+                    </h:panelGroup>                   
+                </h:panelGrid>
+                
+                <h:panelGrid columns="6" cellpadding="10" columnClasses="col1, col2, col3, col4, col5bis, col6bis">
+                    <h:panelGroup>
+                        <!-- Titre-->
+                        <p>Titre</p><br/>                       
+                    </h:panelGroup>                   
+                    <h:panelGroup>
+                        <!-- Auteur-->
+                        <p>Mon auteur</p><br/>
+                    </h:panelGroup>                   
+                    <h:panelGroup>
+                        <!-- Date-->
+                        <p>Ma date</p><br/>
+                    </h:panelGroup>
+                     <h:panelGroup>
+                         <!-- Résumé-->
+                        <p>Mon résumé</p><br/>
+                    </h:panelGroup>
+                     <h:panelGroup>
+                         <!-- Quantité-->
+                         <h:form>
+                             <h:inputText id="NbLivre" value="1" size="2"></h:inputText>
+                         </h:form>
+                        
+                    </h:panelGroup>
+                     <h:panelGroup>
+                         <!-- Bouton Ajouter-->
+                         <h:button value="Ajouter au panier" onclick="#"></h:button>
+                    </h:panelGroup>                   
+                </h:panelGrid>
+                <h:panelGrid columns="6" cellpadding="10" columnClasses="col1, col2, col3, col4, col5bis, col6bis">
+                    <h:panelGroup>
+                        <!-- Titre-->
+                        <p>Titre</p><br/>                       
+                    </h:panelGroup>                   
+                    <h:panelGroup>
+                        <!-- Auteur-->
+                        <p>Mon auteur</p><br/>
+                    </h:panelGroup>                   
+                    <h:panelGroup>
+                        <!-- Date-->
+                        <p>Ma date</p><br/>
+                    </h:panelGroup>
+                     <h:panelGroup>
+                         <!-- Résumé-->
+                        <p>Mon résumé</p><br/>
+                    </h:panelGroup>
+                     <h:panelGroup>
+                         <!-- Quantité-->
+                         <h:form>
+                             <h:inputText id="NbLivre" value="1" size="2"></h:inputText>
+                         </h:form>
+                        
+                    </h:panelGroup>
+                     <h:panelGroup>
+                         <!-- Bouton Ajouter-->
+                         <h:button value="Ajouter au panier" onclick="#"></h:button>
+                    </h:panelGroup>                   
+                </h:panelGrid>                      
         </div>
         
         

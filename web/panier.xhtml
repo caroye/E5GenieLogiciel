@@ -18,7 +18,7 @@
         <!-- TOP __________________________________________________________________-->
         <div id="top">            
              <h:form>
-                <<h:graphicImage value="/resources/image/plaisirdelire.png" />
+                <h:graphicImage value="/resources/image/plaisirdelire.png" />
                 <h:button value="Sign up"  style="float: right;" outcome="inscription"/>
                 <h:button value ="Sign in" style="float: right;" outcome="connexion"/>
                 <h:button image="/resources/image/shopping-cart.png" style="float: right;"/>
@@ -95,12 +95,13 @@
                          
                     </h:panelGroup>                   
                 </h:panelGrid>
-                
+                <h:form>
+                    <h:commandButton value="commander" style="float:right"/>
+                </h:form>
             </div>
+            
         </div>
-        <h:form>
-            <h:commandButton value="commander" />
-        </h:form>
+       
         
         <!-- BOTTOM __________________________________________________________________-->
         <div id="bottom"  class="absolute">
